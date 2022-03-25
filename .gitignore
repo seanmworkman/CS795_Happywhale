@@ -132,3 +132,6 @@ dmypy.json
 organized_train_images/
 test_images/
 train_images/
+organized_train2_images/
+organized_validation_images/
+organized_test_images/

@@ -23,11 +23,31 @@ for i in range(len(species)):
     speciesDict[species[i]] = i
 
 for i in species:
-    os.mkdir('./organized_train_images/'+str(speciesDict[i]))
+    os.mkdir('./organized_train2_images/'+str(speciesDict[i]))
+    os.mkdir('./organized_validation_images/'+str(speciesDict[i]))
+    os.mkdir('./organized_test_images/'+str(speciesDict[i]))
 
-# files = ['file1.txt', 'file2.txt', 'file3.txt']
-# os.mkdir('my_new_folder')
+
+trainBreak = int(len(imageData) * 0.7)
+valBreak = int(len(imageData) * 0.15)
+testBreak = int(len(imageData) * 0.15)
+# print(trainBreak)
+# print(valBreak)
+# print(testBreak)
+
+
 for f in range(1, len(imageData)):
-    print()
-    print('./train_images/'+imageData[f][0]+ 'Moved To' + './organized_train_images/'+str(speciesDict[imageData[f][1]])+'/')
-    shutil.copy('./train_images/'+imageData[f][0], './organized_train_images/'+str(speciesDict[imageData[f][1]])+'/')
+    if f < trainBreak:
+        print()
+        print('./train_images/'+imageData[f][0]+ ' Moved To ' + './organized_train2_images/'+str(speciesDict[imageData[f][1]])+'/')
+        shutil.copy('./train_images/'+imageData[f][0], './organized_train2_images/'+str(speciesDict[imageData[f][1]])+'/')
+    elif f < (trainBreak + valBreak):
+        print()
+        print('./train_images/'+imageData[f][0]+ ' Moved To ' + './organized_validation_images/'+str(speciesDict[imageData[f][1]])+'/')
+        shutil.copy('./train_images/'+imageData[f][0], './organized_validation_images/'+str(speciesDict[imageData[f][1]])+'/')
+    elif f < (trainBreak + valBreak + testBreak):
+        print()
+        print('./train_images/'+imageData[f][0]+ ' Moved To ' + './organized_test_images/'+str(speciesDict[imageData[f][1]])+'/')
+        shutil.copy('./train_images/'+imageData[f][0], './organized_test_images/'+str(speciesDict[imageData[f][1]])+'/')
+
+    
